@@ -1,0 +1,28 @@
+erDiagram
+    USERS ||--o{ POSTS : writes
+    USERS ||--o{ COMMENTS : writes
+    POSTS ||--o{ COMMENTS : receives
+
+    USERS {
+        BIGINT user_id PK
+        VARCHAR username UK
+        VARCHAR email UK
+        TEXT password_hash
+        TIMESTAMPTZ created_at
+    }
+    POSTS {
+        BIGINT post_id PK
+        BIGINT user_id FK
+        VARCHAR title
+        TEXT body
+        VARCHAR status
+        TIMESTAMPTZ created_at
+        TIMESTAMPTZ updated_at
+    }
+    COMMENTS {
+        BIGINT comment_id PK
+        BIGINT post_id FK
+        BIGINT user_id FK
+        TEXT comment_text
+        TIMESTAMPTZ created_at
+    }
